@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting to Yukta's Birthday Invitation</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #FFF0F5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            color: #FF4D8B;
+            text-align: center;
+        }
+        
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(255, 77, 139, 0.2);
+            max-width: 500px;
+            width: 90%;
+        }
+        
+        h1 {
+            margin-bottom: 20px;
+        }
+        
+        p {
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        
+        .redirect-button {
+            background: linear-gradient(135deg, #FF73A9, #FF4D8B);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 5px 15px rgba(255, 77, 139, 0.3);
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .redirect-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 77, 139, 0.4);
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .heart {
+            color: #FF4D8B;
+            font-size: 1.5em;
+            display: inline-block;
+            animation: pulse 1.5s infinite;
+        }
+    </style>
+    <script>
+        // Redirect after 3 seconds
+        setTimeout(function() {
+            window.location.href = "birthday_invitation.html";
+        }, 3000);
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Yukta's 1<sup>st</sup> Birthday! <span class="heart">♥</span></h1>
+        <p>You'll be redirected to the invitation in a moment...</p>
+        <a href="birthday_invitation.html" class="redirect-button">Go to Invitation Now</a>
+    </div>
+</body>
+</html> 
