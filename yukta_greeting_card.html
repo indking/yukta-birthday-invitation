@@ -792,8 +792,8 @@
     <div class="greeting-card">
         <!-- Language Toggle -->
         <div class="language-toggle">
-            <button class="language-btn active" onclick="setLanguage('en')">English</button>
-            <button class="language-btn" onclick="setLanguage('mr')">मराठी</button>
+            <button class="language-btn" onclick="setLanguage('en')">English</button>
+            <button class="language-btn active" onclick="setLanguage('mr')">मराठी</button>
         </div>
         
         <!-- Download Button -->
@@ -1055,8 +1055,12 @@
             // });
         }
         
-        // Add animated background
+        // Set default language to Marathi when page loads
         document.addEventListener('DOMContentLoaded', function() {
+            // Set Marathi as default
+            document.body.classList.add('marathi');
+            setLanguage('mr');
+            
             // Create animated background particles
             const cardContent = document.querySelector('.card-content');
             
