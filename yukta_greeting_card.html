@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yukta's Birthday Greeting Card</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Dancing+Script:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+    <!-- Additional Google Font for Marathi -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-color: #FF73A9;
+            --primary-dark: #FF4D8B;
+            --primary-light: #FF9DC4;
+            --primary-lighter: #FFC5DD;
+            --primary-lightest: #FFD0E5;
+            --background-light: #FFF0F5;
+            --text-dark: #444;
+            --text-light: #777;
+            --white: #ffffff;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', 'Hind', sans-serif;
+            background-color: var(--white);
+            color: var(--text-dark);
+            position: relative;
+            text-align: center;
+            overflow-x: hidden;
+            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23FF73A9' d='M14.828 14.828a4 4 0 1 0-5.656-5.656 4 4 0 0 0 5.656 5.656zm-8.485 1.415a7 7 0 0 0 9.9 0l1.414 1.414a9 9 0 1 1 0-12.728l-1.414 1.414a7 7 0 0 0-9.9 9.9z'/%3E%3C/svg%3E"), auto;
+        }
+        
+        .greeting-card {
+            position: relative;
+            width: 1920px;
+            height: 1080px;
+            margin: 0 auto;
+            background-color: var(--white);
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.15);
+            perspective: 1200px;
+            transform-style: preserve-3d;
+        }
+        
+        .card-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            background: radial-gradient(circle at center, var(--background-light) 0%, var(--white) 70%);
+            z-index: 1;
+        }
+        
+        /* 3D ribbon effect */
+        .ribbon {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            z-index: 100;
+        }
+
+        .ribbon::before, 
+        .ribbon::after {
+            content: 'Special Day!';
+            position: absolute;
+            top: 30px;
+            right: -35px;
+            width: 200px;
+            padding: 8px 0;
+            background: var(--primary-color);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            transform: rotate(45deg);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+            animation: ribbon-wave 3s ease-in-out infinite;
+        }
+        
+        .marathi .ribbon::before, 
+        .marathi .ribbon::after {
+            content: 'विशेष दिवस!';
+        }
+
+        @keyframes ribbon-wave {
+            0%, 100% { transform: rotate(45deg) translateZ(0); }
+            50% { transform: rotate(45deg) translateZ(10px); }
+        }
+        
+        /* Confetti animation */
+        .confetti-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: var(--primary-light);
+            opacity: 0.7;
+            animation: confetti-fall 10s ease-in-out infinite;
+            transform-style: preserve-3d;
+        }
+        
+        .confetti:nth-child(1) { left: 5%; animation-delay: 0s; background-color: var(--primary-color); }
+        .confetti:nth-child(2) { left: 10%; animation-delay: 1s; background-color: var(--primary-light); }
+        .confetti:nth-child(3) { left: 15%; animation-delay: 2s; background-color: var(--primary-dark); }
+        .confetti:nth-child(4) { left: 20%; animation-delay: 3s; background-color: var(--primary-lighter); }
+        .confetti:nth-child(5) { left: 25%; animation-delay: 4s; background-color: var(--primary-lightest); }
+        .confetti:nth-child(6) { left: 30%; animation-delay: 5s; background-color: var(--primary-color); }
+        .confetti:nth-child(7) { left: 35%; animation-delay: 6s; background-color: var(--primary-light); }
+        .confetti:nth-child(8) { left: 40%; animation-delay: 7s; background-color: var(--primary-dark); }
+        .confetti:nth-child(9) { left: 45%; animation-delay: 8s; background-color: var(--primary-lighter); }
+        .confetti:nth-child(10) { left: 50%; animation-delay: 9s; background-color: var(--primary-lightest); }
+        
+        .confetti:nth-child(odd) {
+            width: 12px;
+            height: 12px;
+            transform: rotate(45deg);
+        }
+        
+        .confetti:nth-child(even) {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        @keyframes confetti-fall {
+            0% {
+                top: -100px;
+                transform: translateX(0) rotateZ(0) rotateY(0) scale(1);
+            }
+            25% {
+                transform: translateX(20px) rotateZ(45deg) rotateY(180deg) scale(1.2);
+            }
+            50% {
+                transform: translateX(-20px) rotateZ(90deg) rotateY(360deg) scale(1);
+            }
+            75% {
+                transform: translateX(20px) rotateZ(135deg) rotateY(540deg) scale(0.8);
+            }
+            100% {
+                top: 110vh;
+                transform: translateX(-20px) rotateZ(180deg) rotateY(720deg) scale(1);
+            }
+        }
+        
+        /* Card Header */
+        .card-header {
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .card-header h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.1);
+            animation: fadeInUp 1s ease forwards, float-text 5s ease-in-out infinite;
+        }
+        
+        .card-header p {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            animation: fadeInUp 1s ease 0.3s forwards, float-text 6s ease-in-out infinite 1s;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float-text {
+            0% { transform: translateY(0) translateZ(0); }
+            50% { transform: translateY(-5px) translateZ(10px); }
+            100% { transform: translateY(0) translateZ(0); }
+        }
+        
+        /* Main Photo */
+        .photo-frame {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            margin: 20px auto;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        
+        .photo-container {
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            animation: photo-float 6s ease-in-out infinite;
+        }
+        
+        .photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(255, 77, 139, 0.3);
+            border: 10px solid var(--white);
+        }
+        
+        @keyframes photo-float {
+            0% { transform: translateY(0) rotateY(0); }
+            50% { transform: translateY(-15px) rotateY(5deg); }
+            100% { transform: translateY(0) rotateY(0); }
+        }
+        
+        /* Floating Decorations */
+        .decoration {
+            position: absolute;
+            z-index: 1;
+            transform-style: preserve-3d;
+            transition: all 0.5s ease;
+        }
+        
+        .decoration img {
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .decoration:nth-child(1) {
+            top: 100px;
+            left: 100px;
+            animation: float-1 6s ease-in-out infinite;
+        }
+        
+        .decoration:nth-child(2) {
+            top: 150px;
+            right: 100px;
+            animation: float-2 8s ease-in-out infinite;
+        }
+        
+        .decoration:nth-child(3) {
+            bottom: 100px;
+            left: 120px;
+            animation: float-3 7s ease-in-out infinite;
+        }
+        
+        .decoration:nth-child(4) {
+            bottom: 150px;
+            right: 120px;
+            animation: float-4 9s ease-in-out infinite;
+        }
+        
+        @keyframes float-1 {
+            0%, 100% { transform: translateY(0) rotate(0); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        
+        @keyframes float-2 {
+            0%, 100% { transform: translateY(0) rotate(0); }
+            50% { transform: translateY(-25px) rotate(-5deg); }
+        }
+        
+        @keyframes float-3 {
+            0%, 100% { transform: translateY(0) rotate(0); }
+            50% { transform: translateY(-15px) rotate(-8deg); }
+        }
+        
+        @keyframes float-4 {
+            0%, 100% { transform: translateY(0) rotate(0); }
+            50% { transform: translateY(-22px) rotate(8deg); }
+        }
+        
+        /* Birthday Message */
+        .birthday-message {
+            max-width: 600px;
+            margin: 30px auto;
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2rem;
+            color: var(--primary-dark);
+            line-height: 1.6;
+            position: relative;
+            text-align: center;
+            z-index: 2;
+        }
+        
+        .birthday-message::before,
+        .birthday-message::after {
+            content: '"';
+            font-size: 3rem;
+            position: absolute;
+            color: var(--primary-light);
+            opacity: 0.7;
+        }
+        
+        .birthday-message::before {
+            top: -20px;
+            left: -15px;
+        }
+        
+        .birthday-message::after {
+            bottom: -40px;
+            right: -15px;
+        }
+        
+        /* Party Info */
+        .party-info {
+            margin: 30px auto;
+            background-color: var(--background-light);
+            padding: 25px 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 77, 139, 0.15);
+            max-width: 600px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .party-info h3 {
+            font-size: 1.8rem;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+        }
+        
+        .party-info p {
+            font-size: 1.4rem;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .party-info i {
+            color: var(--primary-dark);
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            display: flex;
+            justify-content: space-between;
+            max-width: 800px;
+            margin: 30px auto;
+            gap: 30px;
+            z-index: 2;
+            position: relative;
+        }
+        
+        .contact-info, .qr-code {
+            flex: 1;
+            background-color: var(--background-light);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(255, 77, 139, 0.15);
+        }
+        
+        .contact-info h3, .qr-code h3 {
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+        }
+        
+        .contact-info p {
+            font-size: 1.2rem;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-info i {
+            color: var(--primary-dark);
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .qr-code {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: var(--white);
+            border: 2px solid #f0ad4e;
+        }
+        
+        .qr-code img {
+            width: 180px;
+            height: 180px;
+            border: 3px solid #f0ad4e;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+        
+        .qr-code p {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+        
+        /* Footer */
+        .footer {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--primary-dark);
+            z-index: 2;
+        }
+        
+        /* Language Toggle */
+        .language-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .language-btn {
+            padding: 8px 15px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .language-btn:hover, 
+        .language-btn.active {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 77, 139, 0.3);
+        }
+        
+        /* Download Button */
+        .download-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+            padding: 8px 15px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .download-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 77, 139, 0.3);
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 1920px) {
+            .greeting-card {
+                width: 100%;
+                height: auto;
+                min-height: 100vh;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .card-header h1 {
+                font-size: 3rem;
+            }
+            
+            .card-header p {
+                font-size: 1.5rem;
+            }
+            
+            .photo-frame {
+                width: 300px;
+                height: 300px;
+            }
+            
+            .birthday-message {
+                font-size: 1.8rem;
+            }
+            
+            .contact-section {
+                flex-direction: column;
+            }
+        }
+        
+        /* 3D Cake Animation */
+        .cake-3d-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 20px auto;
+            perspective: 1000px;
+            z-index: 3;
+        }
+        
+        .cake-3d {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: cake-rotate 15s linear infinite;
+        }
+        
+        .cake-3d-side {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(255, 77, 139, 0.3);
+            background: rgba(255, 255, 255, 0.8);
+        }
+        
+        .cake-3d-front { transform: translateZ(50px); }
+        .cake-3d-back { transform: rotateY(180deg) translateZ(50px); }
+        .cake-3d-right { transform: rotateY(90deg) translateZ(50px); }
+        .cake-3d-left { transform: rotateY(-90deg) translateZ(50px); }
+        .cake-3d-top { transform: rotateX(90deg) translateZ(50px); }
+        .cake-3d-bottom { transform: rotateX(-90deg) translateZ(50px); }
+        
+        .cake-3d img {
+            width: 90%;
+            height: 90%;
+            object-fit: contain;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        
+        @keyframes cake-rotate {
+            0% { transform: rotateY(0) rotateX(5deg); }
+            100% { transform: rotateY(360deg) rotateX(5deg); }
+        }
+        
+        /* Birthday Blast emoji */
+        .birthday-blast-emoji {
+            font-size: 3.5rem;
+            display: inline-block;
+            margin: 0 5px;
+            animation: pulse 2s infinite;
+        }
+        
+        .party-icons {
+            display: flex;
+            justify-content: center;
+            margin: 15px 0;
+        }
+        
+        .party-icon {
+            font-size: 2rem;
+            margin: 0 10px;
+            display: inline-block;
+            animation: bounce 2s infinite alternate;
+        }
+        
+        .party-icon:nth-child(1) { animation-delay: 0s; }
+        .party-icon:nth-child(2) { animation-delay: 0.2s; }
+        .party-icon:nth-child(3) { animation-delay: 0.4s; }
+        .party-icon:nth-child(4) { animation-delay: 0.6s; }
+        .party-icon:nth-child(5) { animation-delay: 0.8s; }
+        
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-10px); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Framed photo gallery */
+        .photo-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px auto;
+            max-width: 800px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .gallery-photo {
+            width: 150px;
+            height: 150px;
+            position: relative;
+            perspective: 1000px;
+            transform-style: preserve-3d;
+        }
+        
+        .gallery-frame {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            cursor: pointer;
+        }
+        
+        .gallery-frame:hover {
+            transform: rotateY(180deg);
+        }
+        
+        .frame-front, .frame-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .frame-front {
+            background-color: var(--white);
+            border: 8px solid var(--primary-lightest);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .frame-back {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            color: white;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1rem;
+            transform: rotateY(180deg);
+            text-align: center;
+        }
+        
+        .gallery-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Sparkling effect */
+        .sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: transparent;
+            z-index: 1;
+        }
+        
+        .sparkle::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, white 10%, transparent 70%);
+            border-radius: 50%;
+            animation: sparkle-pulse 2s infinite;
+        }
+        
+        @keyframes sparkle-pulse {
+            0%, 100% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1); opacity: 1; }
+        }
+        
+        .sparkle:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .sparkle:nth-child(2) { top: 30%; right: 15%; animation-delay: 0.3s; }
+        .sparkle:nth-child(3) { top: 70%; left: 20%; animation-delay: 0.6s; }
+        .sparkle:nth-child(4) { bottom: 20%; right: 10%; animation-delay: 0.9s; }
+        .sparkle:nth-child(5) { top: 40%; left: 50%; animation-delay: 1.2s; }
+        
+        .particle {
+            position: absolute;
+            width: var(--size);
+            height: var(--size);
+            background: var(--primary-color);
+            opacity: 0.6;
+            pointer-events: none;
+            z-index: 0;
+            animation: float-particle 15s linear infinite;
+            animation-delay: var(--delay);
+            top: -50px;
+            left: var(--left);
+        }
+        
+        @keyframes float-particle {
+            0% {
+                transform: translateY(-50px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(1100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Frame decoration */
+        .frame-decoration {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 15px solid transparent;
+            border-image: url(Photos/frame.png) 30 stretch;
+            border-radius: 20px;
+            pointer-events: none;
+            z-index: 4;
+        }
+        
+        /* Print & Download styling */
+        @media print {
+            .language-toggle,
+            .download-btn,
+            .confetti-container,
+            .sparkle {
+                display: none !important;
+            }
+            
+            .greeting-card {
+                box-shadow: none;
+            }
+        }
+        
+        /* Animated elements effect */
+        .animated-element {
+            animation: appear 1s ease-in-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        @keyframes appear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+        .delay-5 { animation-delay: 1s; }
+    </style>
+</head>
+<body>
+    <div class="greeting-card">
+        <!-- Language Toggle -->
+        <div class="language-toggle">
+            <button class="language-btn active" onclick="setLanguage('en')">English</button>
+            <button class="language-btn" onclick="setLanguage('mr')">मराठी</button>
+        </div>
+        
+        <!-- Download Button -->
+        <button class="download-btn" onclick="downloadCard()">
+            <i class="fas fa-download"></i> Download
+        </button>
+        
+        <!-- 3D Ribbon -->
+        <div class="ribbon"></div>
+        
+        <!-- Confetti Container -->
+        <div class="confetti-container">
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+        </div>
+        
+        <!-- Floating Decorations -->
+        <div class="decoration">
+            <img src="Photos/photo4.jpeg" alt="Decoration 1" width="100">
+        </div>
+        <div class="decoration">
+            <img src="Photos/photo5.jpeg" alt="Decoration 2" width="120">
+        </div>
+        <div class="decoration">
+            <img src="Photos/photo6.jpeg" alt="Decoration 3" width="110">
+        </div>
+        <div class="decoration">
+            <img src="Photos/photo2.jpeg" alt="Decoration 4" width="100">
+        </div>
+        
+        <!-- Card Content -->
+        <div class="card-content">
+            <!-- Frame Decoration -->
+            <div class="frame-decoration"></div>
+            
+            <!-- Card Header -->
+            <div class="card-header animated-element delay-1">
+                <span class="birthday-blast-emoji">🎂</span>
+                <h1>Happy 1st Birthday Yukta!</h1>
+                <div class="party-icons">
+                    <span class="party-icon">🎈</span>
+                    <span class="party-icon">🎉</span>
+                    <span class="party-icon">🎊</span>
+                    <span class="party-icon">🎁</span>
+                    <span class="party-icon">🎈</span>
+                </div>
+                <p>Our Little Princess</p>
+            </div>
+            
+            <!-- Main Photo -->
+            <div class="photo-frame animated-element delay-1">
+                <div class="photo-container">
+                    <img src="Photos/photo1.jpeg" alt="Yukta's Birthday Photo">
+                </div>
+            </div>
+            
+            <!-- 3D Cake -->
+            <div class="cake-3d-container animated-element delay-2">
+                <div class="cake-3d">
+                    <div class="cake-3d-side cake-3d-front">
+                        <img src="Photos/photo3.jpeg" alt="Birthday Cake">
+                    </div>
+                    <div class="cake-3d-side cake-3d-back">
+                        <img src="Photos/photo2.jpeg" alt="Birthday Cake Back">
+                    </div>
+                    <div class="cake-3d-side cake-3d-right">
+                        <img src="Photos/photo5.jpeg" alt="Birthday Cake Right">
+                    </div>
+                    <div class="cake-3d-side cake-3d-left">
+                        <img src="Photos/photo4.jpeg" alt="Birthday Cake Left">
+                    </div>
+                    <div class="cake-3d-side cake-3d-top">
+                        <img src="Photos/photo6.jpeg" alt="Birthday Cake Top">
+                    </div>
+                    <div class="cake-3d-side cake-3d-bottom">
+                        <img src="Photos/photo1.jpeg" alt="Birthday Cake Bottom">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Birthday Message -->
+            <div class="birthday-message animated-element delay-3">
+                From tiny fingers to precious smiles, our sweet Yukta has filled our lives with love and joy for a wonderful year. Let's celebrate this milestone together!
+            </div>
+            
+            <!-- Photo Gallery -->
+            <div class="photo-gallery animated-element delay-4">
+                <div class="gallery-photo">
+                    <div class="gallery-frame">
+                        <div class="frame-front">
+                            <img src="Photos/photo1.jpeg" alt="Gallery Photo 1">
+                        </div>
+                        <div class="frame-back">
+                            <p>Baby's First Smile</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-photo">
+                    <div class="gallery-frame">
+                        <div class="frame-front">
+                            <img src="Photos/photo2.jpeg" alt="Gallery Photo 2">
+                        </div>
+                        <div class="frame-back">
+                            <p>Playful Moments</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-photo">
+                    <div class="gallery-frame">
+                        <div class="frame-front">
+                            <img src="Photos/photo3.jpeg" alt="Gallery Photo 3">
+                        </div>
+                        <div class="frame-back">
+                            <p>Sleeping Beauty</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-photo">
+                    <div class="gallery-frame">
+                        <div class="frame-front">
+                            <img src="Photos/photo4.jpeg" alt="Gallery Photo 4">
+                        </div>
+                        <div class="frame-back">
+                            <p>Happy Moments</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sparkling Effects -->
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            
+            <!-- Party Info -->
+            <div class="party-info animated-element delay-4">
+                <h3>Join Us for the Celebration!</h3>
+                <p><i class="far fa-calendar-alt"></i> April 28, 2025 (Monday)</p>
+                <p><i class="far fa-clock"></i> Starting at 6:30 PM</p>
+                <p><i class="fas fa-map-marker-alt"></i> Punjabi Cultural Association, 434 3, Gultekdi Road, Near Golden Bakery, Salisbury Park, Gultekdi, Pune, Maharashtra 411037</p>
+            </div>
+            
+            <!-- Contact Section -->
+            <div class="contact-section animated-element delay-5">
+                <div class="contact-info">
+                    <h3><i class="fas fa-phone-alt"></i> Contact Us</h3>
+                    <p><i class="fas fa-user"></i> Nikhil & Pallavi Kawade</p>
+                    <p><i class="fas fa-phone"></i> +91 9876543210</p>
+                    <p><i class="fas fa-envelope"></i> kawade.family@example.com</p>
+                </div>
+                
+                <div class="qr-code">
+                    <h3><i class="fas fa-map-marked-alt"></i> Venue Location</h3>
+                    <img src="Photos/map-qr-code.jpeg" alt="Map QR Code">
+                    <p>Scan to navigate to the venue</p>
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <div class="footer">
+                Created with ❤️ for Yukta's Special Day
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Function to toggle language - Enhanced with smoother transitions
+        function setLanguage(lang) {
+            const elements = document.querySelectorAll('.language-btn');
+            elements.forEach(el => el.classList.remove('active'));
+            
+            // Add fade-out effect
+            const contentElements = document.querySelectorAll('.animated-element');
+            contentElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+            });
+            
+            setTimeout(() => {
+                if (lang === 'mr') {
+                    document.querySelector('.card-header h1').innerText = 'युक्ताचा पहिला वाढदिवस शुभेच्छा!';
+                    document.querySelector('.card-header p').innerText = 'आमची लहान राजकुमारी';
+                    document.querySelector('.birthday-message').innerText = 'लहान बोटांपासून अमूल्य स्मितपर्यंत, आमच्या गोड युक्ताने एका अद्भुत वर्षासाठी आमचे जीवन प्रेमाने आणि आनंदाने भरले आहे. आपण हा महत्त्वपूर्ण टप्पा एकत्र साजरा करूया!';
+                    document.querySelector('.party-info h3').innerText = 'सोहळ्यासाठी आमच्यासोबत सहभागी व्हा!';
+                    document.querySelector('.party-info p:nth-child(2)').innerHTML = '<i class="far fa-calendar-alt"></i> २८ एप्रिल, २०२५ (सोमवार)';
+                    document.querySelector('.party-info p:nth-child(3)').innerHTML = '<i class="far fa-clock"></i> संध्याकाळी ६:३० पासून';
+                    document.querySelector('.party-info p:nth-child(4)').innerHTML = '<i class="fas fa-map-marker-alt"></i> पंजाबी कल्चरल असोसिएशन, ४३४ ३, गुलटेकडी रोड, गोल्डन बेकरी जवळ, सॉल्सबरी पार्क, गुलटेकडी, पुणे, महाराष्ट्र ४११०३७';
+                    document.querySelector('.contact-info h3').innerHTML = '<i class="fas fa-phone-alt"></i> संपर्क';
+                    document.querySelector('.contact-info p:nth-child(2)').innerHTML = '<i class="fas fa-user"></i> निखिल कावडे';
+                    document.querySelector('.qr-code h3').innerHTML = '<i class="fas fa-map-marked-alt"></i> ठिकाणाचा नकाशा';
+                    document.querySelector('.qr-code p').innerText = 'ठिकाणावर जाण्यासाठी स्कॅन करा';
+                    document.querySelector('.footer').innerHTML = 'युक्ताच्या खास दिवसासाठी ❤️ सह तयार केलेले';
+                    document.querySelector('.download-btn').innerHTML = '<i class="fas fa-download"></i> डाउनलोड';
+                    
+                    // Update gallery text
+                    document.querySelectorAll('.frame-back p')[0].innerText = 'बाळाचे पहिले स्मित';
+                    document.querySelectorAll('.frame-back p')[1].innerText = 'खेळण्याचे क्षण';
+                    document.querySelectorAll('.frame-back p')[2].innerText = 'झोपलेली सुंदरी';
+                    document.querySelectorAll('.frame-back p')[3].innerText = 'आनंदी क्षण';
+                    
+                    document.body.classList.add('marathi');
+                    document.querySelector('.language-btn:nth-child(2)').classList.add('active');
+                } else {
+                    document.querySelector('.card-header h1').innerText = 'Happy 1st Birthday Yukta!';
+                    document.querySelector('.card-header p').innerText = 'Our Little Princess';
+                    document.querySelector('.birthday-message').innerText = 'From tiny fingers to precious smiles, our sweet Yukta has filled our lives with love and joy for a wonderful year. Let\'s celebrate this milestone together!';
+                    document.querySelector('.party-info h3').innerText = 'Join Us for the Celebration!';
+                    document.querySelector('.party-info p:nth-child(2)').innerHTML = '<i class="far fa-calendar-alt"></i> April 28, 2025 (Monday)';
+                    document.querySelector('.party-info p:nth-child(3)').innerHTML = '<i class="far fa-clock"></i> Starting at 6:30 PM';
+                    document.querySelector('.party-info p:nth-child(4)').innerHTML = '<i class="fas fa-map-marker-alt"></i> Punjabi Cultural Association, 434 3, Gultekdi Road, Near Golden Bakery, Salisbury Park, Gultekdi, Pune, Maharashtra 411037';
+                    document.querySelector('.contact-info h3').innerHTML = '<i class="fas fa-phone-alt"></i> Contact Us';
+                    document.querySelector('.contact-info p:nth-child(2)').innerHTML = '<i class="fas fa-user"></i> Nikhil & Pallavi Kawade';
+                    document.querySelector('.qr-code h3').innerHTML = '<i class="fas fa-map-marked-alt"></i> Venue Location';
+                    document.querySelector('.qr-code p').innerText = 'Scan to navigate to the venue';
+                    document.querySelector('.footer').innerHTML = 'Created with ❤️ for Yukta\'s Special Day';
+                    document.querySelector('.download-btn').innerHTML = '<i class="fas fa-download"></i> Download';
+                    
+                    // Reset gallery text
+                    document.querySelectorAll('.frame-back p')[0].innerText = 'Baby\'s First Smile';
+                    document.querySelectorAll('.frame-back p')[1].innerText = 'Playful Moments';
+                    document.querySelectorAll('.frame-back p')[2].innerText = 'Sleeping Beauty';
+                    document.querySelectorAll('.frame-back p')[3].innerText = 'Happy Moments';
+                    
+                    document.body.classList.remove('marathi');
+                    document.querySelector('.language-btn:nth-child(1)').classList.add('active');
+                }
+                
+                // Add fade-in effect
+                setTimeout(() => {
+                    contentElements.forEach(el => {
+                        el.style.opacity = '1';
+                        el.style.transform = 'translateY(0)';
+                        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    });
+                }, 50);
+            }, 300);
+        }
+        
+        // Function to download the card as an image
+        function downloadCard() {
+            alert("To save this card as an image, please take a screenshot of this page.\n\nOn Windows: Press Win+Shift+S\nOn Mac: Press Cmd+Shift+4\nOn Mobile: Use your device's screenshot function.");
+            
+            // In a real implementation, we would use html2canvas or a similar library to generate an image
+            // html2canvas(document.querySelector('.greeting-card')).then(canvas => {
+            //     const link = document.createElement('a');
+            //     link.download = 'yukta_birthday_card.png';
+            //     link.href = canvas.toDataURL('image/png');
+            //     link.click();
+            // });
+        }
+        
+        // Add animated background
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create animated background particles
+            const cardContent = document.querySelector('.card-content');
+            
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particle.style.setProperty('--size', Math.random() * 10 + 5 + 'px');
+                particle.style.setProperty('--left', Math.random() * 100 + '%');
+                particle.style.setProperty('--delay', Math.random() * 5 + 's');
+                
+                const color = i % 5;
+                switch(color) {
+                    case 0: particle.style.background = 'var(--primary-color)'; break;
+                    case 1: particle.style.background = 'var(--primary-light)'; break;
+                    case 2: particle.style.background = 'var(--primary-dark)'; break;
+                    case 3: particle.style.background = 'var(--primary-lighter)'; break;
+                    case 4: particle.style.background = 'var(--primary-lightest)'; break;
+                }
+                
+                if (i % 2 === 0) {
+                    particle.style.borderRadius = '50%';
+                } else {
+                    particle.style.transform = 'rotate(' + (Math.random() * 360) + 'deg)';
+                }
+                
+                cardContent.appendChild(particle);
+            }
+        });
+    </script>
+</body>
+</html> 
